@@ -333,7 +333,7 @@ typedef NS_ENUM(NSUInteger, MCSwipeTableViewCellDirection) {
         UIPanGestureRecognizer *g = (UIPanGestureRecognizer *)gestureRecognizer;
         CGPoint point = [g velocityInView:self];
         
-        if (fabs(point.x) > fabs(point.y) ) {
+        if (fabsf(point.x) > fabsf(point.y) ) {
             if (point.x < 0 && !_modeForState3 && !_modeForState4) {
                 return NO;
             }
@@ -349,9 +349,11 @@ typedef NS_ENUM(NSUInteger, MCSwipeTableViewCellDirection) {
             
             return YES;
         }
+        else
+            return NO; // PAUL:
     }
     
-    return NO;
+    return YES; // PAUL:
 }
 
 #pragma mark - Percentage
